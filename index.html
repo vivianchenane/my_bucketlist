@@ -1,12 +1,6 @@
 <html>
 	<head>
-	<script type="text/javascript">
-         <!--
-            function Redirect() {
-               window.location="add_item.html";
-            }
-         //-->
-      </script>
+
 		<title>Bucket List</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
@@ -20,7 +14,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">Login</h3></div>
 						<div class="panel-body">
-							<form role="form">
+							<form role="form" method="POST">
 
 								<div class="col-sm-12">
 									<div class="form-group">
@@ -36,7 +30,7 @@
 								</div>
 
 								<div class="col-sm-6">
-									<input type="submit" value="Login" class="btn btn-primary btn-block"><span><strong>Or <a href="register.html">Register</a></strong></span> 
+									<input type="button" value="Login" id="btnLogin" class="btn btn-primary btn-block"><span><strong>Or <a href="register.html">Register</a></strong></span> 
 										<div class="checkbox">
 			    	    					<label><input name="remember" type="checkbox" value="Remember Me"> Remember Me
 			    	    					</label>
@@ -54,8 +48,16 @@
 
 
 
-<script type=text/javascript"></script>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+//alert("this is login page")
+$('#btnLogin').on('click',function(){
+window.location.href='dashboard.html';
+});
+
+
+</script>
 	</body>
 </html>
