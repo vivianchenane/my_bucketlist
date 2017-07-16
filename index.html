@@ -1,5 +1,12 @@
 <html>
 	<head>
+	<script type="text/javascript">
+         <!--
+            function Redirect() {
+               window.location="add_item.html";
+            }
+         //-->
+      </script>
 		<title>Bucket List</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
@@ -17,7 +24,7 @@
 
 								<div class="col-sm-12">
 									<div class="form-group">
-										<input type="email" name="email"id="email" class="form-control input-sm" placeholder="Email Address">
+										<input type="text" name="username"id="user_name" class="form-control input-sm" placeholder="Username">
 									</div>
 								</div>
 
@@ -30,8 +37,15 @@
 
 								<div class="col-sm-6">
 									<input type="submit" value="Login" class="btn btn-primary btn-block"><span><strong>Or <a href="register.html">Register</a></strong></span> 
+										<div class="checkbox">
+			    	    					<label><input name="remember" type="checkbox" value="Remember Me"> Remember Me
+			    	    					</label>
+			    	    				</div>
+
 								</div>
+								
 							</form>
+							
 						</div>
 					</div>
 				</div>
@@ -43,6 +57,5 @@
 <script type=text/javascript"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
 	</body>
 </html>
