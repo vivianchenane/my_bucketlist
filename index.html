@@ -1,5 +1,6 @@
 <html>
 	<head>
+
 		<title>Bucket List</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
@@ -7,57 +8,38 @@
 	<body>
 
 	<div class="container">
-		<form class="form-signin">
-			<h2 class="form-signin-heading">please sign in</h2>
-			<label for="inputEmail"  class="sr-only" >Email address</label><input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-			
-			<label for="inputPassword"class="sr-only">password</label>
-			<input type="password" id="inputPassword" class="form-control"
-			placeholder="password" required>
-		<button class="btn btn-lg btn-primary btn block" type="submit">signin</button>
-
-
-		</form>
-	</div>
-	<div class="container">
 		<div class="row centered-form">
 			<div class="col-sm-6">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Register</h3></div>
+						<h3 class="panel-title">Login</h3></div>
 						<div class="panel-body">
-							<form role="form">
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="text" name="First Name" id="first_name" class="form-control input-sm"  placeholder="First Name">
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="form-group">
-										<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
-									</div>
-								</div>
+							<form role="form" method="POST">
 
 								<div class="col-sm-12">
 									<div class="form-group">
-										<input type="email" name="email"id="email" class="form-control input-sm" placeholder="Email Address">
+										<input type="text" name="username"id="user_name" class="form-control input-sm" placeholder="Username">
 									</div>
 								</div>
 
 
-								<div class="col-sm-6">
+								<div class="col-sm-12">
 									<div class="form-group">
 										<input type="password" name="password" class="form-control input-sm" placeholder="password">
 									</div>
 								</div>
 
 								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="password" name="password_confirmation" id="pasword_confirmation" class="form-control input-sm" placeholder="confrim password">
-									</div>
+									<input type="button" value="Login" id="btnLogin" class="btn btn-primary btn-block"><span><strong>Or <a href="register.html">Register</a></strong></span> 
+										<div class="checkbox">
+			    	    					<label><input name="remember" type="checkbox" value="Remember Me"> Remember Me
+			    	    					</label>
+			    	    				</div>
+
 								</div>
-								<input type="submit" value="Register" class="btn btn-info btn-block">
+								
 							</form>
+							
 						</div>
 					</div>
 				</div>
@@ -65,47 +47,17 @@
 		</div>
 
 
-<div class="container">
-<h2>Add Bucket List Item</h2>
-<p>Enter Item Details Below:</p>
-<form>
-
-<div class="row">
-	<div class="col-xs-6 col-sm-6 col-md-6">
-		<div class="form-group">
-			<input type="text" name="Item Name" id="item_name" class="form-control input-sm" placeholder="Item Name">
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label for="description">Description:</label>
-			<textarea class="form-control" rows="5" id="comment"></textarea>
-		</div>
-	</div>
-</div>
 
 
-<div class="row">
-	<div class="col-sm-6">
-		<div class="form-group">
-			<label class="control-label" for="date">Date</label>
-			<input class="form-control" name="date"	id="date" placeholder="MM/DD/YYYY" type="text">
-		</div>
-		<div class="form-group">
-			<button class="btn btn-primary  "  name="submit">Submit</button>
-		</div>
-	</div>
-</div>
-
-
-</form>
-</div>
-<script type=text/javascript"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+//alert("this is login page")
+$('#btnLogin').on('click',function(){
+window.location.href='dashboard.html';
+});
 
+
+</script>
 	</body>
 </html>
