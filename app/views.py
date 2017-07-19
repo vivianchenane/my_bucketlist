@@ -22,5 +22,9 @@ def login():
 def logout():
     return redirect('/index')
 
+@app.route('/add_item')
+def addItem():
+   return render_template('add_item.html', title='Add Item'
+
 
 

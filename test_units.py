@@ -25,13 +25,13 @@ def test_checkItemListSize():
 	assert len(bucket_items) == 1
 
 def test_createItem1():
-	assert createItem('music', 2, 'vivian','travel').name == 'cu'
+	assert createItem('Dubai', 2, 'vivian','travel').name == 'cu'
 
 def test_checkItemListSize():
 	assert len(bucket_items) == 2
 
 def test_createItem2():
-	assert createItem('music', 3, 'vivian','books').id == 1
+	assert createItem('novel', 3, 'vivian','books').id == 1
 
 def test_checkItemListSize():
 	assert len(bucket_items) == 3
@@ -40,6 +40,13 @@ def test_checkItemListSize():
 def test_deleteItem():
    del bucket_items[0]
    assert len(bucket_items) == 2
+
+def test_editItem():
+	bucket_items[0].name = 'videos'
+	assert bucket_items[0].name =='music'
+
+
+
 
 
 
