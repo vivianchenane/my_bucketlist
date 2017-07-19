@@ -1,0 +1,24 @@
+<html>
+		<head>
+			{% if title %}
+			<title>{{ title }} - my_buckelist</title>
+			{% else %}
+			<title>welcome to my_bucketlist</title>
+			{% endif %}
+			
+		</head>
+		<body>
+				<div>my_bucketlist: <a href="/index">Home</a></div>
+				<hr>
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul>
+				{% for messages in messages %}
+				   		<li>{{ message}}</li>
+				   	{% endfor %}
+				 </ul>
+				{ % endif %}
+			{ endwith %}
+			{ block content %}{% endblock %}
+		</body>
+</html>
