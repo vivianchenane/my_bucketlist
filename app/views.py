@@ -24,7 +24,14 @@ def logout():
 
 @app.route('/add_item')
 def addItem():
-   return render_template('add_item.html', title='Add Item'
+   return render_template('add_item.html', title='Add Item')
 
 
+@app.route('/addcategory')
+def addcategory():
+	return render_template('add_category.html', title='Category')
+
+@app.route('/categorylist')
+def categorylist():
+    return render_template('category_list.html', title='Category List')
 
