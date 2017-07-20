@@ -29,7 +29,7 @@ def login():
 
     if database_users['username'] == username and database_users['password'] == password:
         session['username'] = username
-        return redirect('/dashboard' ,message = 'Login successful!!')
+        return redirect('/dashboard')
 
     flash('please enter valid login credentials##')
     return index()
