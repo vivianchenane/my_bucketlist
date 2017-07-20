@@ -7,3 +7,8 @@ install: "pip install -r requirements.txt"
 
 # command to run tests
 script: py.test
+
+
+# __5a after_success
+after_success:
+    - coveralls -v
