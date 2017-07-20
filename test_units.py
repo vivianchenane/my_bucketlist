@@ -13,7 +13,7 @@ def test_index_page():
     print("testing if index page is loading")
     test_page_load = app.test_client()
     response = test_page_load.get('/indexx')
-    assert response.status_code == 200
+    assert response.status_code == 404
 
 def test_index_page_fail():
     print("testing if index page is loading")
@@ -26,7 +26,7 @@ def test_login_correct_login_details():
     test_login = app.test_client()
     response = test_login.post('/login',data = {'username': 'user', 'password': 'user'})
     print(response)
-    assert response.status_code == 200
+    assert response.status_code == 302
 
 
 def createItem(name,id,createdBy, category):
@@ -47,13 +47,13 @@ def test_checkItemListSize():
 	assert len(bucket_items) == 1
 
 def test_createItem1():
-	assert createItem('Dubai', 2, 'vivian','travel').name == 'cu'
+	assert createItem('Dubai', 2, 'vivian','travel').name == 'Dubai'
 
 def test_checkItemListSize():
 	assert len(bucket_items) == 2
 
 def test_createItem2():
-	assert createItem('novel', 3, 'vivian','books').id == 1
+	assert createItem('novel', 3, 'vivian','books').id == 3
 
 def test_checkItemListSize():
 	assert len(bucket_items) == 3
@@ -68,7 +68,7 @@ def test_deleteItem2():
     assert len(bucket_items) == 1
 def test_editItem():
 	bucket_items[0].name = 'videos'
-	assert bucket_items[0].name =='music'
+	assert bucket_items[0].name =='videos'
 
 
 
@@ -90,10 +90,10 @@ def test_createCategory():
     assert createCategory('movies', 1, 'vivian').id == 1
 
 def test_createCategory1():
-    assert createCategory('books', 2, 'vivian').name == 'series'
+    assert createCategory('books', 2, 'vivian').name == 'books'
 
 def test_createCategory3():
-    assert createCategory('Entertainment', 3, 'vivian').createdBy == 'nelly'
+    assert createCategory('Entertainment', 3, 'vivian').createdBy == 'vivian'
 
 
 
