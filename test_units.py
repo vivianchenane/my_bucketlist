@@ -1,3 +1,5 @@
+from app import app
+
 class BucketlistItem(object):
     pass
 
@@ -6,6 +8,26 @@ class Category(object):
 
 
 bucket_items = []
+
+def test_index_page():
+    print("testing if index page is loading")
+    test_page_load = app.test_client()
+    response = test_page_load.get('/indexx')
+    assert response.status_code == 200
+
+def test_index_page_fail():
+    print("testing if index page is loading")
+    test_page_load = app.test_client()
+    response = test_page_load.get('/index')
+    assert response.status_code == 200
+
+def test_login_correct_login_details():
+    print("testing if index page is loading")
+    test_login = app.test_client()
+    response = test_login.post('/login',data = {'username': 'user', 'password': 'user'})
+    print(response)
+    assert response.status_code == 200
+
 
 def createItem(name,id,createdBy, category):
  	item = BucketlistItem()
@@ -41,6 +63,9 @@ def test_deleteItem():
    del bucket_items[0]
    assert len(bucket_items) == 2
 
+def test_deleteItem2():
+    del bucket_items[1]
+    assert len(bucket_items) == 1
 def test_editItem():
 	bucket_items[0].name = 'videos'
 	assert bucket_items[0].name =='music'

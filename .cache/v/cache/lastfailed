@@ -3,5 +3,6 @@
   "test_units.py::test_createCategory3": true,
   "test_units.py::test_createItem1": true,
   "test_units.py::test_createItem2": true,
-  "test_units.py::test_editItem": true
+  "test_units.py::test_editItem": true,
+  "test_units.py::test_index_page": true
 }
