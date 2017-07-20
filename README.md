@@ -1,5 +1,5 @@
 # my_bucketlist
-https://travis-ci.org/vivianchenane/my_bucketlist.svg?branch=master
+[![Build Status](https://travis-ci.org/vivianchenane/my_bucketlist.svg?branch=master)](https://travis-ci.org/vivianchenane/my_bucketlist)
 
 
 my_bucketlist is a web application that I have designed using bootstrap, java script, css, HTML and python.
