@@ -23,12 +23,11 @@ def login():
     print(request.form.get('username'))
     print(request.form.get('password'))
 
-    if not username or password:
-      flash('please enter username or password')
+    #if not username or password:
+      #flash('please enter username or password')
+      #return index()
 
-    return index()
-
-    if database_users['username'] == username and database_users['password']:
+    if database_users['username'] == username and database_users['password'] == password:
         session['username'] = username
         return redirect('/dashboard' ,message = 'Login successful!!')
 
@@ -37,9 +36,9 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboardhtml', title='Dashboard')
+    return render_template('dashboard.html', title='Dashboard')
 
-@app.route('/logout')
+@app.route('/logout') 
 def logout():
     return redirect('/index')
 
