@@ -1,56 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-
-            	 <div class="container">
-					<table class="table"> 
-					 	<thead>
-					 		<tr>
-					 			<th>#</th>
-					 			<th>Category Name</th>
-					 			<th>Description</th>
-					 			<th>Date</th>
-					 			<th>View</th>
-					 			<th>Edit</th>
-					 		</tr>
-					 	</thead>
-					 	<tbody>
-					 		<tr>
-					 			<th scope="row">1</th>
-					 			<td>Travelling</td>
-					 			<td>Travel to Dubai</td>
-					 			<td>01/12/2017</td>
-					 			<td>
-					 				<button type="button" class="btn btn-primary navbar-btn">View</button>
-					 			</td>
-					 			<td>
-					 				<button type="button" class="btn btn-info navbar-btn">Edit</button>
-					 			</td>
-					 		</tr>
-					 		<tr>
-					 			<th scope="row">2</th>
-					 			<td>Entertainment</td>
-					 			<td>Learn dancing,music,movies</td>
-					 			<td>01/09/2017</td>
-					 			<td>
-					 				<button type="button" class="btn btn-primary navbar-btn">View</button>
-					 				</td>
-					 				<td>
-					 				<button type="button" class="btn btn-info navbar-btn">Edit</button>
-					 			</td>
-					 		</tr>
-					 		<tr>
-					 			<th scope="row">3</th>
-					 			<td>Books</td>
-					 			<td>Read novels,magazines</td>
-					 			<td>01/10/2017</td>
-					 			<td>
-					 				<button type="button" class="btn btn-primary navbar-btn">View</button>
-					 			</td>
-					 			<td>
-					 			<button type="button" class="btn btn-info navbar-btn">Edit</button>
-					 			</td>
-					 		</tr>
-					 	</tbody>
-					</table>      
-				</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Category Name</th>
+                <th>Description</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for item in category_items %}
+            <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

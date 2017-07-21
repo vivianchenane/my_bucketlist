@@ -1,4 +1,8 @@
 # my_bucketlist
+[![Build Status](https://travis-ci.org/vivianchenane/my_bucketlist.svg?branch=master)](https://travis-ci.org/vivianchenane/my_bucketlist)
+
+
+[![Coverage Status](https://coveralls.io/repos/github/vivianchenane/my_bucketlist/badge.svg?branch=master)](https://coveralls.io/github/vivianchenane/my_bucketlist?branch=master)
 
 
 my_bucketlist is a web application that I have designed using bootstrap, java script, css, HTML and python.
