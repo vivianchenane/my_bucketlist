@@ -25,3 +25,6 @@ How to setup the project
 5.Install  pytest with the command pip install pytest
 6. Run the application by executing the script run.py
 7. Run unit tests by executing the script pytest test_units.py
+8. Login to the application with:
+	username: user
+	password: user
