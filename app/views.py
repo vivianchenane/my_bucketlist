@@ -17,6 +17,17 @@ bucket_list_items = [
 ]
 
 
+category_items = [
+    {
+        'id': '1',
+        'name': 'Travel',
+        'description': 'My dream destinations',
+        'user': 'vivian'
+    }
+]
+
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -74,16 +85,25 @@ def add_item():
 
 @app.route('/addcategory')
 def addcategory():
-	return render_template('add_category.html', title='Category')
+	return render_template('add_category.html', title='Add Category')
 
 
 @app.route('/save_category', methods=['POST'])
 def saveCategory():
-    return redirect('/categorylist')
+	name = request.form.get('name')
+        description = request.form.get('description')
+        user = session['username']
+        id = len(category_items) + 1
+
+        category = Category(id,name,description,user)
+        category_items.append(category)
+        return redirect('/categorylist')
+
+    return redirect('/addcategory')
 
 
 @app.route('/categorylist')
 def categorylist():
-    return render_template('category_list.html', title='Category List')
+    return render_template('category_list.html', title='Category List',category_items=category_items)
 
 
