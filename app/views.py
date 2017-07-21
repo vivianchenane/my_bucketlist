@@ -90,14 +90,13 @@ def addcategory():
 
 @app.route('/save_category', methods=['POST'])
 def saveCategory():
-	name = request.form.get('name')
-        description = request.form.get('description')
-        user = session['username']
-        id = len(category_items) + 1
-
-        category = Category(id,name,description,user)
-        category_items.append(category)
-        return redirect('/categorylist')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    user = session['username']
+    id = len(category_items) + 1
+    category = Category(id,name,description,user)
+    category_items.append(category)
+    return redirect('/categorylist')
 
     return redirect('/addcategory')
 
