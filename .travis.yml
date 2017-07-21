@@ -12,3 +12,9 @@ script: py.test
 # __5a after_success
 after_success:
     - coveralls -v
+    
+#deployment to heroku
+deploy:
+  provider: heroku
+  api_key:
+    secure: "7cae33b3-901c-43e1-8fe2-542f7733d81b"
