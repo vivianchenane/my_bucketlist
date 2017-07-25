@@ -1,5 +1,6 @@
 from app import app
 
+
 class BucketlistItem(object):
     pass
 
@@ -8,6 +9,12 @@ class Category(object):
 
 
 bucket_items = []
+
+def test_successful_user_registration(self):
+    email ="vivianchenane@gmail.com"
+    password ="vee"
+    user = {"email": email,"password":password}
+    # assertEqual(app.test_client().post('/register'), data=json.dump(user),"login succesful")
 
 def test_index_page():
     print("testing if index page is loading")
@@ -19,14 +26,14 @@ def test_index_page_fail():
     print("testing if index page is loading")
     test_page_load = app.test_client()
     response = test_page_load.get('/index')
-    assert response.status_code == 200
+    assert response.status_code == 404
 
 def test_login_correct_login_details():
     print("testing if index page is loading")
     test_login = app.test_client()
-    response = test_login.post('/login',data = {'username': 'user', 'password': 'user'})
-    print(response)
-    assert response.status_code == 302
+    response = test_login.post('/login',data = dict(username='user',password='user'),follow_redirects=True)
+    # print(response)
+    assert b'login success' in response.data
 
 
 def createItem(name,id,createdBy, category):

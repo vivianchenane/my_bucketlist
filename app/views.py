@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, session, request
+from flask import render_template, flash, redirect, session, request, url_for
 from app import app
 from .models import BucketListItem, Category
 
@@ -49,13 +49,13 @@ def login():
     #if not username or password:
       #flash('please enter username or password')
       #return index()
-
     if database_users['username'] == username and database_users['password'] == password:
         session['username'] = username
-        return redirect('/dashboard')
+        flash(u'login success')
+        return redirect(url_for('dashboard'))
 
-    flash('please enter valid login credentials##')
-    return index()
+    flash(u'login failed')
+    return redirect(url_for('index'))
 
 @app.route('/dashboard')
 def dashboard():
