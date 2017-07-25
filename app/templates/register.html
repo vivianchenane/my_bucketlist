@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Bucket List</title>
-		<link href="static.css/bootstrap.min.css" rel="stylesheet">
+		<link href="static/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -32,34 +32,24 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">Register</h3></div>
 						<div class="panel-body">
-							<form role="form">
+							<form role="form" method='POST' action='/register'>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="text" name="First Name" id="first_name" class="form-control input-sm"  placeholder="First Name">
+										{{ form.email(classname='form-control input-sm', placeholder="email") }}
+										<!-- <input type="text" name="First Name" id="first_name" class="form-control input-sm"  placeholder="First Name"> -->
 									</div>
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group">
-										<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+										{{ form.username(classname='form-control input-sm', placeholder="username") }}
+										<!-- <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name"> -->
 									</div>
 								</div>
 
 								<div class="col-sm-12">
 									<div class="form-group">
-										<input type="email" name="email"id="email" class="form-control input-sm" placeholder="Email Address">
-									</div>
-								</div>
-
-
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="password" name="password" class="form-control input-sm" placeholder="password">
-									</div>
-								</div>
-
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="password" name="password_confirmation" id="pasword_confirmation" class="form-control input-sm" placeholder="confrim password">
+										{{ form.password(classname='form-control input-sm', placeholder="password")}}
+										<!-- <input type="email" name="email"id="email" class="form-control input-sm" placeholder="Email Address"> -->
 									</div>
 								</div>
 								<input type="submit" value="Register" class="btn btn-info btn-block">

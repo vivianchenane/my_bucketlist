@@ -1,9 +1,11 @@
-from flask import render_template, flash, redirect, session, request
+from flask import render_template, flash, redirect, session, request, url_for
 from app import app
 from .models import BucketListItem, Category
+from .forms import LoginForm, RegisterForm
 
 
-database_users = {'username': 'user' ,'password': 'user'}
+
+database_users = {}
 
 bucket_list_items = [
     {
@@ -34,28 +36,43 @@ def index():
     return render_template('index.html', title='Sign In')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET','POST'])
 def register():
-    return render_template('register.html', title='Register')
+    form=RegisterForm()
+    if request.method== 'GET': 
+        return render_template('register.html', form=form, title='Register') 
+    if request.method=='POST':
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        database_users[username] = dict(email=email, password=password)
+        return redirect('/login')
+        
 
-
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET' ,'POST'])
 def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    print(request.form.get('username'))
-    print(request.form.get('password'))
+    form=LoginForm()
+    if request.method== 'GET': 
+        return render_template('index.html', form=form, title='Login') 
+
+    if request.method=='POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
 
     #if not username or password:
       #flash('please enter username or password')
       #return index()
-
-    if database_users['username'] == username and database_users['password'] == password:
-        session['username'] = username
-        return redirect('/dashboard')
-
-    flash('please enter valid login credentials##')
-    return index()
+        try:
+            if database_users[username] and database_users[username]['password'] == password:
+                session['username'] = username
+                flash(u'login success')
+                return redirect(url_for('dashboard'))
+            else:
+                return redirect(url_for('login'))
+        
+        except (KeyError, ValueError):
+            flash(u'login failed')
+            return redirect(url_for('index'))
 
 @app.route('/dashboard')
 def dashboard():
