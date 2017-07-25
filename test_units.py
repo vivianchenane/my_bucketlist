@@ -26,7 +26,7 @@ def test_index_page_fail():
     print("testing if index page is loading")
     test_page_load = app.test_client()
     response = test_page_load.get('/index')
-    assert response.status_code == 404
+    assert response.status_code == 200
 
 # def test_login_correct_login_details():
 #     print("testing if index page is loading")
