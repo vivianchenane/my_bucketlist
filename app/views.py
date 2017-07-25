@@ -46,7 +46,8 @@ def register():
         username = request.form.get('username')
         password = request.form.get('password')
         database_users[username] = dict(email=email, password=password)
-        return redirect('/login')
+        session['username'] = username
+        return redirect('/dashboard')
         
 
 @app.route('/login', methods=['GET' ,'POST'])
@@ -76,7 +77,7 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', title='Dashboard',bucket_list_items=bucket_list_items)
+    return render_template('dashboard.html', title='Dashboard',bucket_list_itemss=bucket_list_items)
 
 @app.route('/logout') 
 def logout():
@@ -122,4 +123,50 @@ def saveCategory():
 def categorylist():
     return render_template('category_list.html', title='Category List',category_items=category_items)
 
+@app.route('/delete')
+def delete():
+    id = request.args.get('id')
+    print(id)
+    if id == None:
+     return redirect('/dashboard')
+
+    index_to_delete = int(id) - 1
+    print(index_to_delete)
+    del bucket_list_items[index_to_delete]
+    return redirect('/dashboard')
+
+@app.route('/edititem')
+def edit_item():
+    id = request.args.get('id')
+    print(id)
+    if id == None:
+     return redirect('/dashboard')
+    index_to_edit = int(id) - 1
+    print(index_to_edit)
+    item_to_edit=bucket_list_items[index_to_edit]
+    return render_template('edit_item.html',vee=item_to_edit)
+
+@app.route('/update_item', methods=['POST'])
+def update_item():
+    if request.method == 'POST':
+        id = request.form.get('id')
+        name = request.form.get('name')
+        description = request.form.get('description')
+        category = request.form.get('category')
+        user = session['username']
+        date = request.form.get('date')
+
+        for item_to_update in bucket_list_items:
+            print('Item To Update##')
+            print(bucket_list_items)
+            print(item_to_update['id'])
+            print('Done printing')
+            if item_to_update['id'] == id:
+                item_to_update['name'] = name
+                item_to_update['description'] = description
+                item_to_update['date'] = date
+                item_to_update['category'] = category
+                break
+
+    return redirect('/dashboard')
 

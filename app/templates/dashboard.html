@@ -3,6 +3,7 @@
 <div class="container">
 <h2>Bucket List Items</h2>
 <p>Bucket List Items</p>
+<p>{{my_name}}</p>
     <table class="table">
         <thead>
             <tr>
@@ -16,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-         {% for item in bucket_list_items %}
+         {% for item in bucket_list_itemss %}
             <tr>
                 <th scope="row">{{ item.id }}</th>
                 <td>{{ item.name }}</td>
@@ -24,10 +25,12 @@
                 <td>{{ item.date }}</td>
                 <td>{{ item.category }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                    
+                    <a href ='/edititem?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                 </td>
+
                 <td>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                    <a href ='/delete?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}

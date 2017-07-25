@@ -10,11 +10,11 @@ class Category(object):
 
 bucket_items = []
 
-def test_successful_user_registration(self):
-    email ="vivianchenane@gmail.com"
-    password ="vee"
-    user = {"email": email,"password":password}
-    # assertEqual(app.test_client().post('/register'), data=json.dump(user),"login succesful")
+# def test_successful_user_registration():
+#     email ="vivianchenane@gmail.com"
+#     password ="vee"
+#     user = {"email": email,"password":password}
+#     # assertEqual(app.test_client().post('/register'), data=json.dump(user),"login succesful")
 
 def test_index_page():
     print("testing if index page is loading")
@@ -28,12 +28,12 @@ def test_index_page_fail():
     response = test_page_load.get('/index')
     assert response.status_code == 404
 
-def test_login_correct_login_details():
-    print("testing if index page is loading")
-    test_login = app.test_client()
-    response = test_login.post('/login',data = dict(username='user',password='user'),follow_redirects=True)
-    # print(response)
-    assert b'login success' in response.data
+# def test_login_correct_login_details():
+#     print("testing if index page is loading")
+#     test_login = app.test_client()
+#     response = test_login.post('/login',data = dict(username='user',password='user'),follow_redirects=True)
+#     # print(response)
+#     # assert b'login success' in response.data
 
 
 def createItem(name,id,createdBy, category):
@@ -56,13 +56,13 @@ def test_checkItemListSize():
 def test_createItem1():
 	assert createItem('Dubai', 2, 'vivian','travel').name == 'Dubai'
 
-def test_checkItemListSize():
+def test_checkItemListSize4():
 	assert len(bucket_items) == 2
 
 def test_createItem2():
 	assert createItem('novel', 3, 'vivian','books').id == 3
 
-def test_checkItemListSize():
+def test_checkItemListSize3():
 	assert len(bucket_items) == 3
 
 
@@ -73,6 +73,7 @@ def test_deleteItem():
 def test_deleteItem2():
     del bucket_items[1]
     assert len(bucket_items) == 1
+
 def test_editItem():
 	bucket_items[0].name = 'videos'
 	assert bucket_items[0].name =='videos'
