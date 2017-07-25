@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+{%  block content %}
+<div class="container">
+<h2>Edit: {{vee.name}}</h2>
+<p>Enter Item Details Below:</p>
+<form action="/update_item" method="post">
+<div class="row">
+	
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="form-group">
+            <input type="hidden" name="id" value="{{vee.id}}">
+			<input type="text" name="name" id="item_name" value='{{vee.name}}' class="form-control input-sm" placeholder="Item Name">
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group"	>
+		<div class="col-xs-6 col-sm-6 col-md-6">
+		<label for="category">Select category:</label>
+			<select class="form-control" name="category"  id="category">
+			<option>Travel</option>
+			<option>Entertainment</option>
+			<option>Books</option>
+			</select>
+	</div>	
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label for="description">Description:</label>
+			<textarea class="form-control" rows="5" name="description" id="comment">{{vee.description}}</textarea>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label class="control-label" for="date">Date</label>
+			<input class="form-control" name="date"	id="date" placeholder="MM/DD/YYYY" value="{{vee.date}}" type="text">
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary  "  name="submit">Submit</button>
+		</div>
+	</div>
+</div>
+
+
+</form>
+</div>
+
+
+{% endblock %}
+
