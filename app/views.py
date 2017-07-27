@@ -204,7 +204,7 @@ def update_item():
             print(bucket_list_items)
             print(item_to_update['id'])
             print('Done printing')
-            if item_to_update['id'] == id:
+            if item_to_update['id'] == int(id):
                 item_to_update['name'] = name
                 item_to_update['description'] = description
                 item_to_update['date'] = date
