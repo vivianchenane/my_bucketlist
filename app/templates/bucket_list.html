@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<h2>Buckets</h2>
+<!-- <p>Buckets</p> -->
+<div class="row">
+    <a href ='/addbucket' class="btn btn-primary btn-sm pull-right"><i class="glyphicon glyphicon-plus"></i> Add Bucket</a>             
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for item in category_items %}
+            <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>
+                    
+                    <a href ='/editbucket?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                </td>
+
+                <td>
+                    <a href ='/deletebucket?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                </td>
+
+                <td>
+                    <a href ='/viewitems?id={{item.id}}' class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i> View Items</a>
+                </td>                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
