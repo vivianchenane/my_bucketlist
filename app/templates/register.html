@@ -32,23 +32,24 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">Register</h3></div>
 						<div class="panel-body">
+						
 							<form role="form" method='POST' action='/register'>
 								<div class="col-md-12">
 									<div class="form-group">
-										{{ form.email(classname='form-control input-sm', placeholder="email") }}
+										{{ form.email(type="email" ,class_ ='form-control input-sm',placeholder="email") }}
 										<!-- <input type="text" name="First Name" id="first_name" class="form-control input-sm"  placeholder="First Name"> -->
 									</div>
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group">
-										{{ form.username(classname='form-control input-sm', placeholder="username") }}
+										{{ form.username(class_ ='form-control input-sm', placeholder="username") }}
 										<!-- <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name"> -->
 									</div>
 								</div>
 
 								<div class="col-sm-12">
 									<div class="form-group">
-										{{ form.password(classname='form-control input-sm', placeholder="password")}}
+										{{ form.password(class_='form-control input-sm', placeholder="password")}}
 										<!-- <input type="email" name="email"id="email" class="form-control input-sm" placeholder="Email Address"> -->
 									</div>
 								</div>

@@ -1,11 +1,11 @@
 class BucketListItem:
 
-    def __init__(self,id,name,description,category,created_by,date):
+    def __init__(self,id,name,description,category,user,date):
         self.id = id
         self.name = name
         self.description = description
         self.category = category
-        self.createdBy = created_by
+        self.user = user
         self.date = date
 
 

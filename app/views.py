@@ -2,31 +2,31 @@ from flask import render_template, flash, redirect, session, request, url_for
 from app import app
 from .models import BucketListItem, Category
 from .forms import LoginForm, RegisterForm
+import json
 
 
 
-database_users = {}
+database_users = {'username': 'user', 'password': 'user'}
 
-bucket_list_items = [
-    {
-        'id': '1',
-        'name': 'Travel to coast via SGR',
-        'description': 'Going to Mombasa',
-        'category': 'Travel',
-        'user': 'vivian',
-        'date': '30/07/2017'
-    }
-]
+bucket_list_items = []
 
+    # {
+    #     'id': '1',
+    #     'name': 'Travel to coast via SGR',
+    #     'description': 'Going to Mombasa',
+    #     'category': 'Travel',
+    #     'user': 'vivian',
+    #     'date': '30/07/2017'
+    # }
 
-category_items = [
-    {
-        'id': '1',
-        'name': 'Travel',
-        'description': 'My dream destinations',
-        'user': 'vivian'
-    }
-]
+    # {
+    #     'id': '1',
+    #     'name': 'Travel',
+    #     'description': 'My dream destinations',
+    #     'user': 'vivian'
+    # }
+
+category_items = []
 
 
 
@@ -77,7 +77,7 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', title='Dashboard',bucket_list_itemss=bucket_list_items)
+    return redirect('/bucketlist')
 
 @app.route('/logout') 
 def logout():
@@ -86,6 +86,9 @@ def logout():
 
 @app.route('/add_item',methods= ['GET','POST'])
 def add_item():
+    
+    id = request.args.get('id')
+    uname = session['username']
     if request.method == 'POST':
         name = request.form.get('name')
         description = request.form.get('description')
@@ -94,34 +97,73 @@ def add_item():
         date = request.form.get('date')
         id = len(bucket_list_items) + 1
 
-        bucket_item = BucketListItem(id,name,description,category,user,date)
+        # bucket_item = BucketListItem(id,name,description,category,user,date)
+        bucket_item = {"id":  id, "name": name,"description": description,"category":category, "user": user,"date": date}
         bucket_list_items.append(bucket_item)
-        return redirect('/dashboard')
 
-    return render_template('add_item.html', title='Add Item')
+        bucket_index_to_view = int(category) - 1
+        print(bucket_index_to_view)
+        bucket_to_view = category_items[bucket_index_to_view]
+        items_to_view = []
+        for item in bucket_list_items:
+            if item['user'] == str(uname) and item['category'] == category:
+                items_to_view.append(item)
+            else:
+                print('Item NoT for Current logged in User or Bucket##')
+        
+        return render_template('item_list.html', title='Item List',bucket_list_itemss=items_to_view,bucket=bucket_to_view)
+
+    return render_template('add_item.html', title='Add Item', category=id)
 
 
-@app.route('/addcategory')
+@app.route('/addbucket')
 def addcategory():
-	return render_template('add_category.html', title='Add Category')
+	return render_template('add_category.html', title='Add bucket')
 
 
-@app.route('/save_category', methods=['POST'])
+@app.route('/save_bucket', methods=['POST'])
 def saveCategory():
     name = request.form.get('name')
     description = request.form.get('description')
     user = session['username']
     id = len(category_items) + 1
-    category = Category(id,name,description,user)
+    # category = Category(id,name,description,user)
+
+    category = {"id":  id, "name": name,"description": description, "user": user}
+    
     category_items.append(category)
-    return redirect('/categorylist')
+    print('****New Object Added***')
+    print(len(category_items))
+    print(category_items)
+    return redirect('/bucketlist')
 
-    return redirect('/addcategory')
+    return redirect('/addbucket')
 
 
-@app.route('/categorylist')
+@app.route('/bucketlist')
 def categorylist():
-    return render_template('category_list.html', title='Category List',category_items=category_items)
+    uname = session['username']
+    print(uname)
+    user_bucket = []
+    print(len(category_items))
+    for bucket in category_items:
+        print('****Object Details***')
+        print(len(category_items))
+        print(str(bucket))
+        print(str(bucket['user']))
+        print(str(bucket['id']))
+        print(str(uname))
+        print('****End Object Details***')
+        # buk = str(bucket)
+        print('****Object Details After Convert***')
+        
+        if bucket['user'] == str(uname):
+            user_bucket.append(bucket)
+        else:
+            print('Item NoT for Current logged in User##')
+        
+
+    return render_template('bucket_list.html', title='Bucket List',category_items=user_bucket)
 
 @app.route('/delete')
 def delete():
@@ -148,6 +190,7 @@ def edit_item():
 
 @app.route('/update_item', methods=['POST'])
 def update_item():
+    uname = session['username']
     if request.method == 'POST':
         id = request.form.get('id')
         name = request.form.get('name')
@@ -167,6 +210,57 @@ def update_item():
                 item_to_update['date'] = date
                 item_to_update['category'] = category
                 break
+        
+        # bucket_item = {"id":  id, "name": name,"description": description,"category":category, "user": user,"date": date}
+        # display items now for the user
+        print('Item Details!')
+        print(len(bucket_list_items))
+        print(bucket_list_items)
+        bucket_index_to_view = int(category) - 1
+        print(bucket_index_to_view)
+        bucket_to_view = category_items[bucket_index_to_view]
+        items_to_view = []
+        for item in bucket_list_items:
+            if item['user'] == str(uname) and item['category'] == category:
+                items_to_view.append(item)
+            else:
+                print('Item NoT for Current logged in User or Bucket##')
+        print(items_to_view)
+        print(len(items_to_view))
+        print('end ')
+        return render_template('item_list.html', title='Item List',bucket_list_itemss=items_to_view,bucket=bucket_to_view)      
 
-    return redirect('/dashboard')
+
+@app.route('/viewitems')
+def view_items():
+    id = request.args.get('id')
+    uname = session['username']
+    print(id)
+    if id == None:
+     return redirect('/dashboard')
+
+    bucket_index_to_view = int(id) - 1
+    print('****List Details***')
+    print(len(bucket_list_items))
+    print(bucket_index_to_view)
+
+    bucket_to_view = category_items[bucket_index_to_view]
+    items_to_view = []
+    for item in bucket_list_items:
+        print('****Object Details***')
+        print(len(bucket_list_items))
+        print(str(item))
+        print(str(item['user']))
+        print(str(item['id']))
+        print(str(uname))
+        print('****End Object Details***')
+
+        if item['user'] == str(uname) and item['category'] == id:
+            items_to_view.append(item)
+        else:
+            print('Item NoT for Current logged in User or Bucket##')
+        
+    return render_template('item_list.html', title='Item List',bucket_list_itemss=items_to_view,bucket=bucket_to_view)
+
+
 

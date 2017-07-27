@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{%  block content %}
+<div class="container">
+<h2>Bucket: {{bucket.name}}</h2>
+<p>{{bucket.description}}</p>
+    <div class="row">
+        <a href ='/add_item?id={{bucket.id}}' class="btn btn-primary btn-sm pull-right"><i class="glyphicon glyphicon-plus"></i> Add Item</a>             
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Item Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Bucket</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for item in bucket_list_itemss %}
+            <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ bucket.name }}</td>
+                <td>
+                    <a href ='/edititem?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                </td>
+
+                <td>
+                    <a href ='/delete?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
