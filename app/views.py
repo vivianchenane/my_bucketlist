@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, session, request, url_for
 from app import app
-from .models import BucketListItem, Category
+# from .models import BucketListItem, Category
 from .forms import LoginForm, RegisterForm
 import json
 
@@ -137,7 +137,7 @@ def saveCategory():
     print(category_items)
     return redirect('/bucketlist')
 
-    return redirect('/addbucket')
+    # return redirect('/addbucket')
 
 
 @app.route('/bucketlist')
@@ -168,6 +168,7 @@ def categorylist():
 @app.route('/delete')
 def delete():
     id = request.args.get('id')
+    category = request.args.get('category')
     print(id)
     if id == None:
      return redirect('/dashboard')
@@ -175,20 +176,26 @@ def delete():
     index_to_delete = int(id) - 1
     print(index_to_delete)
     del bucket_list_items[index_to_delete]
-    return redirect('/dashboard')
+
+    bucket_index_to_view = int(category) - 1
+    print(bucket_index_to_view)
+    bucket_to_view = category_items[bucket_index_to_view]
+
+    return render_template('item_list.html', title='Item List',bucket_list_itemss=bucket_list_items,bucket=bucket_to_view)
+
+
 
 @app.route('/delete1')
 def delete1():
     id = request.args.get('id')
     print(id)
     if id == None:
-     return redirect('/bucketlist')
+     return redirect('/dashboard')
 
     index_to_delete = int(id) - 1
     print(index_to_delete)
     del category_items[index_to_delete]
-    return redirect('/bucketlist')
-     
+    return redirect('/dashboard')
 
 @app.route('/edititem')
 def edit_item():

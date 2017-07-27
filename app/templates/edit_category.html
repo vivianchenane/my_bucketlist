@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<h2>Edit Bucket</h2>
+
+<form method="post" action="save_bucket">
+
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="form-group">
+			<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Name">
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label for="description">Description:</label>
+			<textarea class="form-control" rows="5" name="description" id="comment"></textarea>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	
+			<button class="btn btn-primary  "  name="submit">Submit</button>
+		</div>
+	</div>
+</div>
+
+
+</form>
+</div>
+
+{% endblock %}
+
