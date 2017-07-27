@@ -177,6 +177,19 @@ def delete():
     del bucket_list_items[index_to_delete]
     return redirect('/dashboard')
 
+@app.route('/delete1')
+def delete1():
+    id = request.args.get('id')
+    print(id)
+    if id == None:
+     return redirect('/bucketlist')
+
+    index_to_delete = int(id) - 1
+    print(index_to_delete)
+    del category_items[index_to_delete]
+    return redirect('/bucketlist')
+     
+
 @app.route('/edititem')
 def edit_item():
     id = request.args.get('id')
