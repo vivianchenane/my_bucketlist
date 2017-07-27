@@ -31,8 +31,9 @@
                 </td>
 
                 <td>
-                    <a href ='/delete?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-                </td>
+<a href ='/delete?id={{item.id}}&category={{bucket.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+</td>
+
             </tr>
         {% endfor %}
         </tbody>

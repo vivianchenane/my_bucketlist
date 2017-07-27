@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+<h2>Edit Bucket: {{bucket.name}}</h2>
+<!-- <p>{{bucket.description}}</p> -->
+
+<form method="post" action="/update_bucket">
+
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="form-group">
+			<input type="hidden" name="id" value="{{bucket.id}}" />
+			<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Name" value="{{bucket.name}}">
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label for="description">Description:</label>
+			<textarea class="form-control" rows="5" name="description" id="comment">{{bucket.description}}</textarea>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	
+			<button class="btn btn-primary  "  name="submit">Submit</button>
+		</div>
+	</div>
+</div>
+
+
+</form>
+</div>
+
+{% endblock %}
+

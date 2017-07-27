@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="container"> 
 <h2>Buckets</h2>
 <!-- <p>Buckets</p> -->
 <div class="row">
@@ -22,13 +22,18 @@
                 <th scope="row">{{ item.id }}</th>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
+               
                 <td>
                     
                     <a href ='/editbucket?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                 </td>
 
                 <td>
-                    <a href ='/deletebucket?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                    <td>
+                        
+ <a href ='/delete1?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+</td>
+
                 </td>
 
                 <td>
