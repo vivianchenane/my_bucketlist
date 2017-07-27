@@ -162,7 +162,6 @@ def categorylist():
         else:
             print('Item NoT for Current logged in User##')
         
-
     return render_template('bucket_list.html', title='Bucket List',category_items=user_bucket)
 
 @app.route('/delete')
@@ -249,6 +248,51 @@ def update_item():
         print(len(items_to_view))
         print('end ')
         return render_template('item_list.html', title='Item List',bucket_list_itemss=items_to_view,bucket=bucket_to_view)      
+
+@app.route('/editbucket')
+def edit_bucket():
+    # get bucket id
+    id = request.args.get('id')
+    print(id)
+    if id == None:
+     return redirect('/bucketlist')
+    index_to_edit = int(id) - 1
+    print(index_to_edit)
+    bucket_to_edit=category_items[index_to_edit]
+    return render_template('edit_bucket.html',bucket=bucket_to_edit)
+
+@app.route('/update_bucket', methods=['POST'])
+def update_bucket():
+    uname = session['username']
+    if request.method == 'POST':
+        id = request.form.get('id')
+        name = request.form.get('name')
+        description = request.form.get('description')
+        user = session['username']
+        
+
+        for item_to_update in category_items:
+            print('Item To Update##')
+            print(category_items)
+            print(item_to_update['id'])
+            print('Done printing')
+            if item_to_update['id'] == int(id):
+                item_to_update['name'] = name
+                item_to_update['description'] = description
+                break
+        
+        # bucket_item = {"id":  id, "name": name,"description": description,"category":category, "user": user,"date": date}
+        # display items now for the user
+        buckets_to_view = []
+        for item in category_items:
+            if item['user'] == str(uname):
+                buckets_to_view.append(item)
+            else:
+                print('Bucket NoT for Current logged in User or Bucket##')
+        print(buckets_to_view)
+        print(len(buckets_to_view))
+        print('end ')
+        return render_template('bucket_list.html', title='Bucket List',category_items=buckets_to_view)      
 
 
 @app.route('/viewitems')
