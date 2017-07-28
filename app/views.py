@@ -41,10 +41,17 @@ def register():
     form=RegisterForm()
     if request.method== 'GET': 
         return render_template('register.html', form=form, title='Register') 
-    if request.method=='POST':
+    if request.method =='POST':
+        print('done here')
+        
         email = request.form.get('email')
         username = request.form.get('username')
         password = request.form.get('password')
+        conpassword = request.form.get('cpassword')
+        if password != conpassword:
+            print('shida ni hapa tu')
+            flash("passwords do not match")
+            return redirect('/register')
         database_users[username] = dict(email=email, password=password)
         session['username'] = username
         return redirect('/dashboard')
@@ -66,13 +73,13 @@ def login():
         try:
             if database_users[username] and database_users[username]['password'] == password:
                 session['username'] = username
-                flash(u'login success')
+               
                 return redirect(url_for('dashboard'))
             else:
                 return redirect(url_for('login'))
         
         except (KeyError, ValueError):
-            flash(u'login failed')
+            flash('login failed')
             return redirect(url_for('index'))
 
 @app.route('/dashboard')
@@ -164,7 +171,7 @@ def categorylist():
         
     return render_template('bucket_list.html', title='Bucket List',category_items=user_bucket)
 
-@app.route('/delete')
+@app.route('/delete_item')
 def delete():
     id = request.args.get('id')
     category = request.args.get('category')
@@ -184,7 +191,7 @@ def delete():
 
 
 
-@app.route('/delete1')
+@app.route('/delete_bucket')
 def delete1():
     id = request.args.get('id')
     print(id)
