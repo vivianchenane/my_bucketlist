@@ -7,6 +7,7 @@ class LoginForm(FlaskForm):
 	remember_me = BooleanField('remember_me',default=False)
 
 class RegisterForm(FlaskForm):
-	email = StringField('Email' ,validators=[DataRequired()])
-	password = PasswordField('Email' ,validators=[DataRequired()])
+	email = StringField('email' ,validators=[DataRequired()])
+	password = PasswordField('password' ,validators=[DataRequired()])
 	username = StringField('username' ,validators=[DataRequired()])
+	cpassword = PasswordField('cpassword' ,validators=[DataRequired()])

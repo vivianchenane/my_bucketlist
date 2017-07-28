@@ -25,6 +25,11 @@ How to setup the project
 5.Install  pytest with the command pip install pytest
 6. Run the application by executing the script run.py
 7. Run unit tests by executing the script pytest test_units.py
-8. Login to the application with:
-	username: user
-	password: user
+
+How to use the application
+ If you are not a registered user, kindly register
+ Click on Add Bucket button to add a bucket
+ click on View Items to view the items
+ click on Add Item to add items tothe bucket
+ click on edi to edit item or bucket
+ click on delete to delete item or bucket
